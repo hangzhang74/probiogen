@@ -1,0 +1,6 @@
+external_path: /home/zhanghang/probiotics/external_genomes
+checkpoint: /home/zhanghang/probiotics/abla/probiogen_run/best_checkpoint.pt
+external_out: /home/zhanghang/probiotics/external_out
+step_size: 2048
+batch_size: 32
+file_agg: mean

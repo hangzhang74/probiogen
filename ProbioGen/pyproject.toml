@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "probiogen"
+version = "0.1.0"
+description = "HyenaDNA-style genome classification and window-level interpretation for probiotic candidate prediction."
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>=1.23",
+    "scikit-learn>=1.2",
+    "torch>=2.0",
+    "tqdm>=4.64",
+]
+
+[project.scripts]
+probiogen = "probiogen.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["probiogen*"]

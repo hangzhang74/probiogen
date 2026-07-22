@@ -1,0 +1,8 @@
+input_path: /home/zhanghang/probiotics/unlabeled_genomes
+out_dir: /home/zhanghang/probiotics/probiogen_pretrain
+window_size: 4096
+step_size: 2048
+epochs: 10
+batch_size: 72
+lr: 0.0001
+mask_prob: 0.15
