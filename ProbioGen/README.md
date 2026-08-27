@@ -48,8 +48,8 @@ pip install -e .
 
 ```bash
 python -m probiogen.cli pretrain \
-  --input_path /home/zhanghang/probiotics/unlabeled_genomes \
-  --out_dir /home/zhanghang/probiotics/probiogen_pretrain \
+  --input_path ./unlabeled_genomes \
+  --out_dir ./probiogen_pretrain \
   --window_size 4096 \
   --step_size 2048 \
   --epochs 10 \
@@ -69,8 +69,8 @@ pretrain_tokenids_ws4096_ss2048_X.npy
 
 ```bash
 python -m probiogen.cli train \
-  --base_path /home/zhanghang/probiotics/abla \
-  --out_dir /home/zhanghang/probiotics/abla/probiogen_run \
+  --base_path ./abla \
+  --out_dir ./probiogen_run \
   --window_size 4096 \
   --step_size 2048 \
   --epochs 50 \
@@ -83,18 +83,18 @@ If you want to initialize the backbone from pretraining:
 
 ```bash
 python -m probiogen.cli train \
-  --base_path /home/zhanghang/probiotics/abla \
-  --out_dir /home/zhanghang/probiotics/abla/probiogen_run \
-  --resume /home/zhanghang/probiotics/probiogen_pretrain/pretrain_checkpoint.pt
+  --base_path . \
+  --out_dir ./probiogen_run \
+  --resume ./pretrain_checkpoint.pt
 ```
 
 ## External prediction
 
 ```bash
 python -m probiogen.cli predict \
-  --external_path /home/zhanghang/probiotics/external_genomes \
-  --checkpoint /home/zhanghang/probiotics/abla/probiogen_run/best_checkpoint.pt \
-  --external_out /home/zhanghang/probiotics/external_out \
+  --external_path ./external_genomes \
+  --checkpoint ./probiogen.pt \
+  --external_out ./external_out \
   --step_size 2048 \
   --batch_size 32 \
   --file_agg mean
@@ -113,8 +113,8 @@ from probiogen import ModelConfig, TrainConfig, train_finetune
 
 model_cfg = ModelConfig(window_size=4096, n_layer=16, d_model=128)
 train_cfg = TrainConfig(
-    base_path="/home/zhanghang/probiotics/abla",
-    out_dir="/home/zhanghang/probiotics/abla/probiogen_run",
+    base_path=".",
+    out_dir="./probiogen_run",
     step_size=2048,
     batch_size=72,
     epochs=50,
@@ -130,9 +130,9 @@ print(result["best_checkpoint"])
 from probiogen import InferenceConfig, predict_fasta_files
 
 infer_cfg = InferenceConfig(
-    checkpoint_path="/home/zhanghang/probiotics/abla/probiogen_run/best_checkpoint.pt",
-    external_path="/home/zhanghang/probiotics/external_genomes",
-    external_out="/home/zhanghang/probiotics/external_out",
+    checkpoint_path="./probiogen.pt",
+    external_path="./external_genomes",
+    external_out="./external_out",
     step_size=2048,
     batch_size=32,
     file_agg="mean",
@@ -151,3 +151,4 @@ print(result["file_csv"])
 5. File-level aggregation is explicit: `mean`, `vote`, or `max`.
 6. External output directory is safely auto-created when not provided.
 7. Window-level CSV exports raw genomic window sequences for downstream BLASTX/KEGG/GO analysis.
+
