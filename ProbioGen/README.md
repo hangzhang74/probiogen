@@ -26,7 +26,7 @@ ProbioGen_GitHub/
 Use one subdirectory per class:
 
 ```text
-/home/zhanghang/probiotics/abla/
+./
 ├── 0/
 │   ├── genome_a.fna
 │   └── genome_b.fna
